@@ -6,18 +6,16 @@ public class PoweredNumber {
     public static void main(String[] args) {
         Scanner in = new Scanner(System.in);
 
-        System.out.println("Enter your number: ");
+        System.out.print("Enter your number: ");
         int num = in.nextInt();
 
-        System.out.println("Enter the power to your number: ");
+        System.out.print("\nEnter the power to your number: ");
         int pow = in.nextInt();
-
-        int n = 1;
-
-        while(pow!=0){
-            n = n * num ;
-            pow--;
+        int pw=1;
+        for (int i=0;i<pow;i++)
+        {
+            pw*=num;
         }
-        System.out.println("Your answer is: " + n);
+        System.out.println("\nThe answer of "+num+"^"+pow+" is :"+ pw);
     }
 }
