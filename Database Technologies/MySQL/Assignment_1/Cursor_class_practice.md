@@ -1,20 +1,21 @@
-# In Lecture Questions on CURSOR.
+> # In Lecture Questions on CURSOR.
+*Class taught by kishori madam*
 
-### Q1. GET EMP DETAILS
--->
+**Q1. GET EMP DETAILS**
 
-delimiter //
-create procedure get_emp_details()
-begin
-declare finished int default 0;
-declare vempno,vmgr,vdeptno int;
-declare vename, vjob varchar(20);
-declare vhiredate date;
-declare vsal, vcomm double(9,2);
-declare emp_cur cursor for select * from emp;
-declare continue handler for not found set finished=1;
-open emp_cur;
-L1:loop
+	delimiter //
+
+	create procedure get_emp_details()
+	begin
+	declare finished int default 0;
+	declare vempno,vmgr,vdeptno int;
+	declare vename, vjob varchar(20);
+	declare vhiredate date;
+	declare vsal, vcomm double(9,2);
+	declare emp_cur cursor for select * from emp;
+	declare continue handler for not found set finished=1;
+	open emp_cur;
+	L1:loop
 	fetch emp_cur into vempno, vename, vjob, vmgr,
 	vhiredate, vsal, vcomm, vdeptno;
 	if finished =1 then
@@ -25,39 +26,40 @@ L1:loop
 	end loop;
 	close emp_cur;
 	end//
-delimiter ;
+	delimiter ;
 
-### Q2. Update sal of employee, also give cnt of 
-each type as output.
+**Q2.Update sal of employee, also give cnt of each type as output.
 If manager, then increase it by 10%
 If analyst, then increase by 20%
 If CLERK, the increase by 25%
-Otherwise increase by 8%
--->
-delimiter //
-create procedure update_emp_sal(
-out pccnt int,
-out pacnt int,out pmcnt int,
-out pocnt int)
-begin
-declare finished int default 0;
-declare vempno,vmgr,vdeptno int;
-declare vename,vjob varchar(20);
-declare vhiredate date;
-declare vsal,vcomm,vupdt_sal double;
-declare emp_cur cursor for select * from emp;
-declare continue handler for not found set finished=1;
-set pccnt=0;
-set pmcnt=0;
-set pocnt=0;
-set pacnt=0;
-open emp_cur;
-L1:loop
+Otherwise increase by 8%**
+
+
+	delimiter //
+	create procedure update_emp_sal(
+	out pccnt int,
+	out pacnt int,out pmcnt int,
+	out pocnt int)
+	begin
+	declare finished int default 0;
+	declare vempno,vmgr,vdeptno int;
+	declare vename,vjob varchar(20);
+	declare vhiredate date;
+	declare vsal,vcomm,vupdt_sal double;
+	declare emp_cur cursor for select * from emp;
+	declare continue handler for not found set finished=1;
+	set pccnt=0;
+	set pmcnt=0;
+	set pocnt=0;
+	set pacnt=0;
+	open emp_cur;
+	L1:loop
 	fetch emp_cur into vempno, vename, vjob,vmgr,
 	vhiredate, vsal,vcomm, vdeptno;
 	if finished=1 then
 		leave L1;
 	end if;
+	
 	
 	if vjob='manager' then
 	set vupdt_sal=1.10*vsal;
@@ -95,14 +97,15 @@ L1:loop
 	end//
 	delimiter ;
 
-### Q3 Write a procedure to update price of product using cursor.
+**Q3 Write a procedure to update price of product using cursor.
 If the category is chips then increase the price by 10%
 If the category is cold drink then increase the price by 20%
-Else increase by 8 %
---->>
-delimiter //
-create procedure upd_price_prod()
-begin 
+Else increase by 8 %**
+
+
+	delimiter //
+	create procedure upd_price_prod()
+	begin 
 	declare finished int default 0;
 	declare vpid,vcatid,vqty int;
 	declare vpname varchar(20);
@@ -153,11 +156,11 @@ begin
 		
 		delimiter ;
 	
-### Q4. Write a procedure to find comma separated list of emails.
--->
-delimiter //
-create procedure get_emails_emp()
-begin
+**Q4. Write a procedure to find comma separated list of emails**
+
+	delimiter //
+	create procedure get_emails_emp()
+	begin
 	declare finished int default 0;
 	declare str varchar(1000) default'';
 	declare vemail, vename, vjob varchar(50);
@@ -184,4 +187,4 @@ begin
 		
 		end//
 		delimiter ;
-==============================================
+																		
